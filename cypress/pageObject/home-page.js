@@ -4,10 +4,16 @@ export class HomePage
     {
         cy.visit('https://www.saucedemo.com/')
     }
-    signin()
+    fill_username(username)
     {
-        cy.get('#user-name').type('standard_user')
-        cy.get('#password').type('secret_sauce')
+        cy.get('#user-name').type(username)
+    }
+    fill_password(password)
+    {
+        cy.get('#password').type(password)
+    }
+    click_loginBtn()
+    {
         cy.get('#login-button').click()
     }
 
