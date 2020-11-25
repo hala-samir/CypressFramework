@@ -2,7 +2,7 @@ export class HomePage
 {
     navigate()
     {
-        cy.visit('https://www.saucedemo.com/')
+        cy.visit('./')
     }
     fill_username(username)
     {
