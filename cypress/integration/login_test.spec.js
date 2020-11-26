@@ -1,39 +1,34 @@
 ///<reference types="cypress"/>
-import {ProductsPage} from "../pageObject/products-page";
-import {HomePage} from "../pageObject/home-page";
+import { ProductsPage } from "../pageObject/products-page";
+import { HomePage } from "../pageObject/home-page";
 
 
-describe('user can ',()=>{
+describe('user can ', () => {
+  const homePageObj = new HomePage()
+  const productsPageObj = new ProductsPage()
+
+  beforeEach(function () {
+    cy.fixture('data.json').then(function (data) {
+      this.data = data
+
     
-    it('login',()=>{
-     const homePageObj= new HomePage()
-     const productsPageObj= new ProductsPage()
+      homePageObj.navigate()
+      homePageObj.login(this.data.username,this.data.password)
+    })
+  })
+  
+  it('login', () => { 
+    cy.get('.product_label').should('have.text', 'Products')
 
-     homePageObj.navigate()
+    productsPageObj.click_sidemenu()
+    productsPageObj.logout()
+    cy.url().should('include', '/index.html')
+  })
 
-     homePageObj.fill_username('standard_user')
-     homePageObj.fill_password('secret_sauce')
-     homePageObj.click_loginBtn()
-
-     cy.get('.product_label').should('have.text', 'Products')
-     
-     productsPageObj.click_sidemenu()
-     productsPageObj.logout()
-     cy.url().should('include', '/index.html')
-   })
-
-   it('logout',()=>{
-    const productsPageObj= new ProductsPage()
-    const homePageObj= new HomePage()
-    homePageObj.navigate()
-    homePageObj.fill_username('standard_user')
-    homePageObj.fill_password('secret_sauce')
-    homePageObj.click_loginBtn()
-
+  it('logout', () => {
     cy.get('.product_label').should('have.text', 'Products')
     productsPageObj.click_sidemenu()
     productsPageObj.logout()
     cy.url().should('include', '/index.html')
-
   })
 })

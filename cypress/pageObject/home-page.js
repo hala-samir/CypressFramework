@@ -4,16 +4,11 @@ export class HomePage
     {
         cy.visit('./')
     }
-    fill_username(username)
+   
+    login(username,password)
     {
         cy.get('#user-name').type(username)
-    }
-    fill_password(password)
-    {
         cy.get('#password').type(password)
-    }
-    click_loginBtn()
-    {
         cy.get('#login-button').click()
     }
 
