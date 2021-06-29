@@ -15,7 +15,12 @@ export class ProductsPage {
     {
         return cy.get('#remove-sauce-labs-backpack')
     }
-    clickProductName()
-    {cy.get('#item_4_title_link > .inventory_item_name').click()}
+    clickProductName(){
+        cy.get('#item_4_title_link > .inventory_item_name').click()
+    }
+
+    productsPageTitle(){
+        return cy.get('.title')
+    }
 
 }

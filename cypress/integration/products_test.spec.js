@@ -32,6 +32,6 @@ describe('user can ', () => {
   it('visit a product page',()=>{
     productsPageObj.clickProductName()
     singleProductsPageObj.backToProductsPage()
-    cy.get('.title').should('have.text', 'Products')
+    productsPageObj.productsPageTitle().should('be.visible')
   })
 })
