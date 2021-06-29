@@ -1,16 +1,16 @@
 ///<reference types="cypress"/>
 import { ProductsPage } from "../pageObject/products-page";
 import { HomePage } from "../pageObject/home-page";
+import {SingleProductsPage} from "../pageObject/singleProduct-page";
 describe('user can ', () => {
   const homePageObj = new HomePage()
   const productsPageObj = new ProductsPage()
+  const singleProductsPageObj = new SingleProductsPage()
+
   beforeEach(function () {
     cy.fixture('data.json').then(function (data) {
       this.data = data
-
-    
       homePageObj.navigate()
-      
       homePageObj.login(this.data.username,this.data.password)
     })
   })
@@ -28,5 +28,10 @@ describe('user can ', () => {
     productsPageObj.click_sidemenu()
     productsPageObj.logout()
 
+  })
+  it('visit a product page',()=>{
+    productsPageObj.clickProductName()
+    singleProductsPageObj.backToProductsPage()
+    cy.get('.title').should('have.text', 'Products')
   })
 })
