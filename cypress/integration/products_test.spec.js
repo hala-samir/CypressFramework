@@ -22,7 +22,6 @@ describe('user can ', () => {
     productsPageObj.removeBackpackFromCart_btn().should('be.visible')
     homePageObj.shoppingCartBadge().should('have.text', '1')
 
-    //cy.get('.btn_secondary').click()
     productsPageObj.removeBackpackFromCart_btn().click()
     productsPageObj.addBackpackToCart_btn().should('be.visible')
 
